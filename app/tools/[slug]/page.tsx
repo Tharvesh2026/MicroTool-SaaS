@@ -7,6 +7,7 @@ import { TOOL_COMPONENTS } from "@/components/tools/tool-component-map";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { Card, Badge } from "@/components/ui/primitives";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { getSiteUrl } from "@/lib/site-url";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -47,7 +48,7 @@ export default async function ToolPage({ params }: PageProps) {
   const ToolComponent = TOOL_COMPONENTS[tool.slug];
   const related = getRelatedTools(tool);
   const categoryMeta = CATEGORIES.find((c) => c.slug === tool.category);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const siteUrl = getSiteUrl();
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",

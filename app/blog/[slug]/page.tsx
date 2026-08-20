@@ -4,6 +4,7 @@ import Link from "next/link";
 import { marked } from "marked";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/blog";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { getSiteUrl } from "@/lib/site-url";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -38,7 +39,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   // Blog content is authored by CreatorDevTools, not user-submitted, so it's
   // safe to render without client-side sanitization.
   const html = marked.parse(post.content, { async: false }) as string;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const siteUrl = getSiteUrl();
 
   const articleJsonLd = {
     "@context": "https://schema.org",

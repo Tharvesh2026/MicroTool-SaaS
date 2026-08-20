@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getAllTools, CATEGORIES } from "@/lib/tools/registry";
 import { getAllBlogPosts } from "@/lib/blog";
+import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const siteUrl = getSiteUrl();
 
   const staticRoutes = [
     "",
